@@ -13,6 +13,7 @@ public class PlayerKnife : EnemyHealth
     public Sprite Standing;
     public GameObject InvisRadpos;
     public GameObject InvisRadneg;
+    public static bool isHitting = false;
 
     
     //update method
@@ -23,11 +24,6 @@ public class PlayerKnife : EnemyHealth
              StartCoroutine(waiter());
         }
     }//end of update method
-
-    public void Hit() {
-        GameObject Radiuspos = Instantiate(InvisRadpos,Player.transform.position,Quaternion.identity);
-        GameObject Radiusneg = Instantiate(InvisRadneg,Player.transform.position,Quaternion.identity);
-    }//end of hit method
 
     //method with timer in it
     IEnumerator waiter() {
@@ -41,7 +37,7 @@ public class PlayerKnife : EnemyHealth
         spriteRenderer.sprite = stance3; 
 
         //hit if enemy is there
-        Hit();
+        isHitting = true;
 
         //bring knife down
         yield return new WaitForSeconds(0.2f); 
@@ -49,6 +45,7 @@ public class PlayerKnife : EnemyHealth
 
         yield return new WaitForSeconds(0.1f); 
         spriteRenderer.sprite = stance1;
+        isHitting = false;
 
         //then change back to standing image
         yield return new WaitForSeconds(0.1f);       

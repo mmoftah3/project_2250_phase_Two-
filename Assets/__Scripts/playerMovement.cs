@@ -93,7 +93,7 @@ public class playerMovement : MonoBehaviour
         if (collision.collider.CompareTag("HealthBox"))
         {
             Destroy(collision.gameObject);
-            Health.heart += 1; 
+            //increase health
         }
         
     }

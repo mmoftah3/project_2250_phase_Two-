@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        slider.value = CalculateHealth();
+       // slider.value = CalculateHealth();
     }
 
     void Update()
@@ -50,6 +50,11 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             TakeDamage(30);
+        }
+
+        if (collision.gameObject.tag == "Player" && PlayerKnife.isHitting == true)
+        {
+            TakeDamage(20);
         }
     }
 
