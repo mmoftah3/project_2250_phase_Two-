@@ -12,6 +12,7 @@ TagManager:
   - Background
   - gemz
   - dagger
+  - HealthBox
   layers:
   - Default
   - TransparentFX
