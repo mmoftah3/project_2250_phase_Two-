@@ -90,6 +90,11 @@ public class playerMovement : MonoBehaviour
         {
             shield.SetActive(true);
         }
+        if (collision.collider.CompareTag("HealthBox"))
+        {
+            Destroy(collision.gameObject);
+            Health.heart += 1; 
+        }
         
     }
 

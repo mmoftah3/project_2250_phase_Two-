@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : EnemyHealth
 {
-
-    public Slider slider;
-
-    public void SetMaxHealth(int health)
+   
+    void TakeDamage(int damage)
     {
-        slider.maxValue = health;
-        slider.value = health;
+        health -= damage;
     }
 
-    public void SetHealth(int health)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        slider.value = health;
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage(10);
+        }
     }
 }

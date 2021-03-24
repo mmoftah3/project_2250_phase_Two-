@@ -40,8 +40,7 @@ public class BulletShooting : MonoBehaviour
 
     //destroying the bullet and the enemy if it hits the enemy
     void OnTriggerEnter(Collider other) { 
-        if (other.gameObject.CompareTag("Enemy")) { 
-        Destroy(other.gameObject);
+        if (other.gameObject.tag == "Enemy") { 
         Destroy(gameObject);
         }//end of if statement
     }//end of on trigger method

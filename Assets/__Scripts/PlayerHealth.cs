@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using System.Threading;
 using UnityEngine.UI;
 
-public class EnemyHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     public float health;
     public float maxHealth;
@@ -28,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
         }
         if (health <= 0)
         {
-            Destroy(gameObject);
+            resetGame();
         }
         if (health > maxHealth)
         {
@@ -41,16 +45,21 @@ public class EnemyHealth : MonoBehaviour
         return health / maxHealth;
     }
 
-    void TakeDamage(int damage)
+   public void TakeDamage(int damage)
     {
         health -= damage;
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "dagger")
         {
-            TakeDamage(30);
+            TakeDamage(20);
         }
+    }
+    void resetGame()
+    {
+        Thread.Sleep(2500); //Pause before reset.
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //restarts game
     }
 
 
