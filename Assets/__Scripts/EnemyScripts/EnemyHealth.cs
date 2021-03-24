@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    //variables
     public float health;
     public float maxHealth;
-
     public GameObject healthBarUI;
     public Slider slider;
 
+    //start method
     void Start()
     {
         health = maxHealth;
        // slider.value = CalculateHealth();
-    }
+    }//end of start method
 
+    //update method
     void Update()
     {
         slider.value = CalculateHealth();
@@ -34,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
         {
             health = maxHealth;
         }
-    }
+    }//end of update method
 
     float CalculateHealth()
     {

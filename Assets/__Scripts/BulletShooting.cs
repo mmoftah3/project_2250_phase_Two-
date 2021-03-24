@@ -7,6 +7,13 @@ public class BulletShooting : MonoBehaviour
     //variables
     public float speed = 40; 
     public GameObject Player;
+    public bool isNegShot;
+    
+    
+    //start method to determine direction of bullet
+    void Start(){
+        isNegShot = playerMovement.isFlipped;
+    }//end of start method
 
     //update method
     void Update(){
@@ -16,9 +23,16 @@ public class BulletShooting : MonoBehaviour
 
     //move method
     public void Move(){
-        Vector3 tempPos = pos;
-        tempPos.x += speed *Time.deltaTime;
-        pos = tempPos;
+        if(isNegShot == false) {
+            Vector3 tempPos = pos;
+            tempPos.x += speed *Time.deltaTime;
+            pos = tempPos;
+        }
+        else {
+            Vector3 tempPos = pos;
+            tempPos.x -= speed *Time.deltaTime;
+            pos = tempPos;
+        }
     }//end of move method
 
     //destroys the bullet if it goes too far away
