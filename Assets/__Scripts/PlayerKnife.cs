@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerKnife : MonoBehaviour
+public class PlayerKnife : EnemyHealth
 {
     //declaring variables
     public GameObject Player;
@@ -11,6 +11,9 @@ public class PlayerKnife : MonoBehaviour
     public Sprite stance2; 
     public Sprite stance3;
     public Sprite Standing;
+    public GameObject InvisRadpos;
+    public GameObject InvisRadneg;
+
     
     //update method
     void Update()
@@ -22,9 +25,8 @@ public class PlayerKnife : MonoBehaviour
     }//end of update method
 
     public void Hit() {
-        //place dammage on enemy if within 10 x coords
-        //if ()
-    
+        GameObject Radiuspos = Instantiate(InvisRadpos,Player.transform.position,Quaternion.identity);
+        GameObject Radiusneg = Instantiate(InvisRadneg,Player.transform.position,Quaternion.identity);
     }//end of hit method
 
     //method with timer in it
