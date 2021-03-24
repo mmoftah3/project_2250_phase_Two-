@@ -14,9 +14,9 @@ public class playerMovement : MonoBehaviour
     public bool isGrounded = false;
     public GameObject shield;
     public Text countText;
-
-
+    public static bool shieldActive = false;
     private int count;
+    public static bool isFlipped = false;
 
     //start method
     void Start(){
@@ -30,7 +30,8 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         SetCountText();
-        Jump(); 
+        Jump();
+        Flip();
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * moveSpeed; 
         
@@ -48,6 +49,7 @@ public class playerMovement : MonoBehaviour
         }//end of if statement
     }//end of jump method
 
+    
     IEnumerator WaiterWalk() {
         while(true){   
             Current = spriteRenderer.sprite;
@@ -89,12 +91,9 @@ public class playerMovement : MonoBehaviour
         if(collision.gameObject.CompareTag("Box"))
         {
             shield.SetActive(true);
+            shieldActive = true;
         }
-        if (collision.collider.CompareTag("HealthBox"))
-        {
-            Destroy(collision.gameObject);
-            //increase health
-        }
+        
         
     }
 
@@ -127,4 +126,29 @@ public class playerMovement : MonoBehaviour
         }
 
     }
+    //This will flip the player if you push F.
+    void Flip()
+    {
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (isFlipped)
+            {  //flips if false
+                transform.localScale = flipped;
+                transform.Rotate(0f, 180f, 0f);
+                isFlipped = false;
+            }
+            else
+            { //flips if true
+
+                transform.localScale = flipped;
+                transform.Rotate(0f, 180f, 0f);
+                isFlipped = true;
+            }
+
+        }
+
+    }
 }//end of class
+

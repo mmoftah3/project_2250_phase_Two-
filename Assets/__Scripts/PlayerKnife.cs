@@ -11,8 +11,6 @@ public class PlayerKnife : EnemyHealth
     public Sprite stance2; 
     public Sprite stance3;
     public Sprite Standing;
-    public GameObject InvisRadpos;
-    public GameObject InvisRadneg;
     public static bool isHitting = false;
 
     
