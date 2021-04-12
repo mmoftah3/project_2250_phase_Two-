@@ -51,7 +51,7 @@ public class BulletShooting : MonoBehaviour
 
     //destroys the bullet if it goes too far away
     public void Bounds(){
-        if(gameObject.transform.position.x > (player.transform.position.x + 200)){
+        if(gameObject.transform.position.x > (player.transform.position.x + 80)){
             Destroy(gameObject);
         }
     }//end of bounds method
@@ -67,7 +67,7 @@ public class BulletShooting : MonoBehaviour
     }//end of position
 
     //destroying the bullet and the enemy if it hits the enemy
-    void OnTriggerEnter(Collider other) { 
+    void OnTriggerEnter (Collider other) { 
         if (other.gameObject.tag == "Enemy") { 
         Destroy(gameObject);
         }//end of if statement

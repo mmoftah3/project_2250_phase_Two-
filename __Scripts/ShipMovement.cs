@@ -9,7 +9,8 @@ public class ShipMovement : MonoBehaviour
     public float speed = 10f; // The speed in m/s
     public float delay = 10;
     public string NewLevel = "End";
-    
+    public GameObject player;
+
     private bool active = false;
     void Start()
     {
@@ -59,7 +60,7 @@ public class ShipMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            player.SetActive(false);
             active = true;
         }
 

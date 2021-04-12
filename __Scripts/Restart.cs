@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Restart : MonoBehaviour
 {
-    //method to main menu
+    //method to load main menu
     public void restartGame()
     {
-        //loading main meanu that has index 3
-        SceneManager.LoadScene(3);
+        //loading main meanu that has index 2
+        SceneManager.LoadScene(2);
     }
 }
