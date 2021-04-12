@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//class to control the camera
 public class CameraControll : MonoBehaviour
 {
     public GameObject player;

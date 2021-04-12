@@ -7,15 +7,22 @@ public class ShipMovement : MonoBehaviour
 {
     [Header("Set in Inspector: Enemy")]
     public float speed = 10f; // The speed in m/s
-    public GameObject canvasText;
-
-
+    public float delay = 10;
+    public string NewLevel = "End";
+    
+    private bool active = false;
     void Start()
     {
-        canvasText.SetActive(false);
+        StartCoroutine(LoadLevelAfterDelay(delay));
+
+    }
+    IEnumerator LoadLevelAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
+        SceneManager.LoadScene(NewLevel);
     }
 
-   
 
     //This is a Property: A method that acts like a field
     public Vector3 pos
@@ -34,7 +41,10 @@ public class ShipMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (active == true)
+        {
+            Move();
+        }
     }
     //Enemy_1 Movement
     public virtual void Move()
@@ -50,25 +60,8 @@ public class ShipMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
-            canvasText.SetActive(true);
+            active = true;
         }
-
-    }
-
-    //on trigger method 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GameObject collisionGameObject = collision.gameObject;
-
-        //if the object collides with the player 
-        if (collisionGameObject.name == "Player2")
-        {
-            //call the LoadScene() method 
-            SceneManager.LoadScene(5);
-            // LoadScene();
-        }
-
-
 
     }
 

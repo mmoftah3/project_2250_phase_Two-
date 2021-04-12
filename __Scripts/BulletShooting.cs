@@ -26,16 +26,27 @@ public class BulletShooting : MonoBehaviour
 
     //move method
     public void Move(){
-        if(isNegShot == false || isNegShot2 == false) {
+        if(isNegShot == false && isNegShot2 == false) {
             Vector3 tempPos = pos;
             tempPos.x += speed *Time.deltaTime;
             pos = tempPos;
         }
-        else {
+        else if (isNegShot == true && isNegShot2 == false)
+        {
             Vector3 tempPos = pos;
-            tempPos.x -= speed *Time.deltaTime;
+            tempPos.x -= speed * Time.deltaTime;
             pos = tempPos;
         }
+        else if (isNegShot == false && isNegShot2 == true)
+        {
+            Vector3 tempPos = pos;
+            tempPos.x -= speed * Time.deltaTime;
+            pos = tempPos;
+        }
+
+       
+        
+      
     }//end of move method
 
     //destroys the bullet if it goes too far away
