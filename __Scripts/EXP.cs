@@ -8,9 +8,13 @@ public class EXP : MonoBehaviour
     //variables
     public float xp;
     public float maxXp;
-    public GameObject healthBarUI;
+    public GameObject expBarUI;
     public Slider slider;
-    
+
+    public HealthBar health;
+
+
+
 
     //start method
     void Start()
@@ -26,19 +30,18 @@ public class EXP : MonoBehaviour
 
         if (xp < maxXp)
         {
-            healthBarUI.SetActive(true);
+            expBarUI.SetActive(true);
 
         }
-      
+
         if (xp > maxXp)
         {
             xp = 0;
+            health.setMaxHealth();
+            health.AddHealth(50);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            gainXP(10);
-        }
+
     }//end of update method
 
     float CalculateXP()
@@ -46,9 +49,18 @@ public class EXP : MonoBehaviour
         return xp / maxXp;
     }
 
-    void gainXP(int exp)
+    public void gainXP(int exp)
     {
         xp += exp;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "exp")
+        {
+            gainXP(40);
+            Destroy(collision.gameObject);
+        }
     }
 
 }

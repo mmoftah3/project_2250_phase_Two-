@@ -11,6 +11,8 @@ public class EnemyHealth : MonoBehaviour
     public GameObject healthBarUI;
     public Slider slider;
 
+    public EXP exp;
+
     //start method
     void Start()
     {
@@ -30,7 +32,10 @@ public class EnemyHealth : MonoBehaviour
         }
         if (health <= 0)
         {
+            exp.gainXP(30);
             Destroy(gameObject);
+
+
         }
         if (health > maxHealth)
         {

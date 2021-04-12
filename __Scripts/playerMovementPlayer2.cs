@@ -151,7 +151,7 @@ public class playerMovementPlayer2 : MonoBehaviour
     void SetCountText()
     {
         //Display the score of the game
-        countText.text = ("Count: " + count.ToString() + "\nCount: " + countLv2.ToString() + "                                  " +
+        countText.text = ("Count: " + count.ToString()+"/18" + "\nCount: " + countLv2.ToString()+"/14" + "                                  " +
             "                                       Level 2");
     }
 

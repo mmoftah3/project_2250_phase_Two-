@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : EnemyHealth
+public class HealthBar : PlayerHealth
 {
     
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         if(playerMovement.shieldActive== true){
             damage = damage - 10;
         }
         health -= damage;
     }
-    void AddHealth(int hp)
+    public void AddHealth(int hp)
     {
         health += hp;
+    }
+    public void setMaxHealth()
+    {
+        maxHealth = maxHealth + 100;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -23,6 +27,10 @@ public class HealthBar : EnemyHealth
         if (collision.gameObject.tag == "Enemy")
         {
             TakeDamage(20);
+        }
+        if (collision.gameObject.tag == "fireBall")
+        {
+            TakeDamage(30);
         }
         if (collision.collider.CompareTag("HealthBox"))
         {

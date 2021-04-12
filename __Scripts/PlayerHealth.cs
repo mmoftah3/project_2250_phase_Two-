@@ -1,26 +1,25 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
-using System.Threading;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    //variables
     public float health;
     public float maxHealth;
-
     public GameObject healthBarUI;
     public Slider slider;
 
+
+    //start method
     void Start()
     {
         health = maxHealth;
-        slider.value = CalculateHealth();
-    }
+        // slider.value = CalculateHealth();
+    }//end of start method
 
+    //update method
     void Update()
     {
         slider.value = CalculateHealth();
@@ -32,34 +31,31 @@ public class PlayerHealth : MonoBehaviour
         }
         if (health <= 0)
         {
-            resetGame();
+            Destroy(gameObject);
+
+
         }
         if (health > maxHealth)
         {
             health = maxHealth;
         }
-    }
+    }//end of update method
 
     float CalculateHealth()
     {
         return health / maxHealth;
     }
 
-   public void TakeDamage(int damage)
+    void TakeDamage(int damage)
     {
         health -= damage;
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "dagger")
+        if (collision.gameObject.tag == "Enemy")
         {
-            TakeDamage(20);
+            TakeDamage(30);
         }
-    }
-    void resetGame()
-    {
-        Thread.Sleep(2500); //Pause before reset.
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //restarts game
     }
 
 
